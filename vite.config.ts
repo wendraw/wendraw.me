@@ -125,6 +125,12 @@ export default defineConfig({
 
         md.use(MarkdownItMagicLink, {
           linksMap: {
+            '奥创光年': 'https://getmogic.com/',
+            '深圳虾皮': 'https://careers.shopee.cn/',
+            '深圳平安': 'https://www.pingan.cn/',
+            'regex-doctor': 'https://github.com/antfu/regex-doctor',
+            'video-editor': 'https://github.com/AiDesignLabs/video-editor',
+            'starter-monorepo': 'https://github.com/wendraw/starter-monorepo',
             'NuxtLabs': 'https://nuxtlabs.com',
             'Vitest': 'https://github.com/vitest-dev/vitest',
             'Slidev': 'https://github.com/slidevjs/slidev',
@@ -145,12 +151,13 @@ export default defineConfig({
             'ESLint': 'https://github.com/eslint/eslint',
             'Astro': 'https://github.com/withastro/astro',
             'TwoSlash': 'https://github.com/twoslashes/twoslash',
-            'Anthony Fu Collective': { link: 'https://opencollective.com/antfu', imageUrl: 'https://github.com/antfu-collective.png' },
+            // 'wendraw Collective': { link: 'https://opencollective.com/antfu', imageUrl: 'https://github.com/antfu-collective.png' },
             'Netlify': { link: 'https://netlify.com', imageUrl: 'https://github.com/netlify.png' },
             'Stackblitz': { link: 'https://stackblitz.com', imageUrl: 'https://github.com/stackblitz.png' },
             'Vercel': { link: 'https://vercel.com', imageUrl: 'https://github.com/vercel.png' },
           },
           imageOverrides: [
+            ['https://getmogic.com/', 'https://getmogic.com/favicon.ico'],
             ['https://github.com/vuejs/core', 'https://vuejs.org/logo.svg'],
             ['https://github.com/nuxt/nuxt', 'https://nuxt.com/assets/design-kit/icon-green.svg'],
             ['https://github.com/vitejs/vite', 'https://vitejs.dev/logo.svg'],
@@ -252,7 +259,7 @@ async function generateOg(title: string, output: string) {
     line2: lines[1],
     line3: lines[2],
   }
-  const svg = ogSVg.replace(/\{\{([^}]+)}}/g, (_, name) => data[name] || '')
+  const svg = ogSVg.replace(/\{\{([^}]+)\}\}/g, (_, name) => data[name] || '')
 
   // eslint-disable-next-line no-console
   console.log(`Generating ${output}`)

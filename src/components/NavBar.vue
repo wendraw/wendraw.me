@@ -16,7 +16,8 @@ const { y: scroll } = useWindowScroll()
       to="/"
       focusable="false"
     >
-      <Logo />
+      <!-- <Logo /> -->
+      <img rounded-full w-6 h-6 object-cover src="/avatar.png" alt="Wendraw" class="logo">
     </RouterLink>
     <button
       title="Scroll to top"
@@ -38,29 +39,29 @@ const { y: scroll } = useWindowScroll()
           <span class="lt-md:hidden">Projects</span>
           <div i-ri-lightbulb-line class="md:hidden" />
         </RouterLink>
-        <RouterLink to="/talks" class="lt-md:hidden" title="Talks">
+        <RouterLink to="/talks" class="md:hidden" title="Talks">
           Talks
         </RouterLink>
-        <RouterLink to="/sponsors-list" title="Sponsors">
+        <RouterLink to="/sponsors-list" title="Sponsors" class="md:hidden">
           <span class="lt-md:hidden">Sponsors</span>
           <div i-ri-heart-line class="md:hidden" />
         </RouterLink>
-        <RouterLink to="/podcasts" class="lt-md:hidden" title="Podcasts">
+        <RouterLink to="/podcasts" class="md:hidden" title="Podcasts">
           <div i-ri-mic-line />
         </RouterLink>
-        <RouterLink to="/demos" title="Demos">
+        <RouterLink to="/demos" title="Demos" class="md:hidden">
           <div i-ri-screenshot-line />
         </RouterLink>
-        <RouterLink to="/chat" title="Let's Chat">
+        <RouterLink to="/chat" title="Let's Chat" class="md:hidden">
           <div i-ri-chat-1-line />
         </RouterLink>
-        <a href="https://twitter.com/antfu7" target="_blank" title="Twitter" class="lt-md:hidden">
+        <a href="https://x.com/wendrawtom" target="_blank" title="Twitter" class="lt-md:hidden">
           <div i-ri-twitter-x-fill />
         </a>
-        <a href="https://github.com/antfu" target="_blank" title="GitHub" class="lt-md:hidden">
+        <a href="https://github.com/wendraw" target="_blank" title="GitHub" class="lt-md:hidden">
           <div i-uil-github-alt />
         </a>
-        <a href="/feed.xml" target="_blank" title="RSS" class="lt-md:hidden">
+        <a href="/feed.xml" target="_blank" title="RSS" class="md:hidden">
           <div i-la-rss-square style="font-size:1.25rem; margin: 0 -0.125rem;" />
         </a>
         <ToggleTheme />

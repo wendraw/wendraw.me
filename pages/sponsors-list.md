@@ -1,8 +1,8 @@
 ---
-title: Sponsors - Anthony Fu
+title: Sponsors - wendraw
 display: Sponsors
 subtitle: Great thanks for all the Sponsors!
-description: Sponsors of Anthony Fu
+description: Sponsors of wendraw
 ---
 
 <!-- @layout-full-width -->
