@@ -14,6 +14,10 @@ projects:
       link: 'https://github.com/antfu/regex-doctor'
       desc: 'Monitor RegExp to Improve Performance'
       icon: 'i-material-symbols:regular-expression saturate-0'
+    - name: 'WebAV'
+      link: 'https://github.com/antfu/regex-doctor'
+      desc: 'Creating/Editing video files on the web platform, built on WebCodecs'
+      icon: 'i-carbon-video-chat saturate-0'
 
   Starter Templates:
     - name: 'Starter Monorepo'

@@ -131,6 +131,7 @@ export default defineConfig({
             'regex-doctor': 'https://github.com/antfu/regex-doctor',
             'video-editor': 'https://github.com/AiDesignLabs/video-editor',
             'starter-monorepo': 'https://github.com/wendraw/starter-monorepo',
+            'WebAV': 'https://github.com/bilibili/WebAV',
             'NuxtLabs': 'https://nuxtlabs.com',
             'Vitest': 'https://github.com/vitest-dev/vitest',
             'Slidev': 'https://github.com/slidevjs/slidev',
