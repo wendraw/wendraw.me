@@ -1,29 +1,30 @@
-import { basename, dirname, resolve } from 'node:path'
 import { Buffer } from 'node:buffer'
-import { defineConfig } from 'vite'
-import fs from 'fs-extra'
-import Inspect from 'vite-plugin-inspect'
-import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
-import Components from 'unplugin-vue-components/vite'
-import Markdown from 'unplugin-vue-markdown/vite'
-import Vue from '@vitejs/plugin-vue'
-import matter from 'gray-matter'
-import AutoImport from 'unplugin-auto-import/vite'
-import anchor from 'markdown-it-anchor'
-import LinkAttributes from 'markdown-it-link-attributes'
-import GitHubAlerts from 'markdown-it-github-alerts'
-import UnoCSS from 'unocss/vite'
-import SVG from 'vite-svg-loader'
+import { basename, dirname, resolve } from 'node:path'
 import MarkdownItShiki from '@shikijs/markdown-it'
 import { rendererRich, transformerTwoslash } from '@shikijs/twoslash'
+import Vue from '@vitejs/plugin-vue'
+import fs from 'fs-extra'
+import matter from 'gray-matter'
+import anchor from 'markdown-it-anchor'
+import GitHubAlerts from 'markdown-it-github-alerts'
+import LinkAttributes from 'markdown-it-link-attributes'
 import MarkdownItMagicLink from 'markdown-it-magic-link'
-import VueRouter from 'unplugin-vue-router/vite'
-import { VueRouterAutoImports } from 'unplugin-vue-router'
-
 // @ts-expect-error missing types
 import TOC from 'markdown-it-table-of-contents'
 import sharp from 'sharp'
+import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
+import Components from 'unplugin-vue-components/vite'
+import Markdown from 'unplugin-vue-markdown/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
+import VueRouter from 'unplugin-vue-router/vite'
+import { defineConfig } from 'vite'
+import Inspect from 'vite-plugin-inspect'
+
+import Exclude from 'vite-plugin-optimize-exclude'
+import SVG from 'vite-svg-loader'
 import { slugify } from './scripts/slugify'
 
 const promises: Promise<any>[] = []
@@ -66,9 +67,6 @@ export default defineConfig({
 
     Vue({
       include: [/\.vue$/, /\.md$/],
-      script: {
-        defineModel: true,
-      },
     }),
 
     Markdown({
@@ -125,13 +123,6 @@ export default defineConfig({
 
         md.use(MarkdownItMagicLink, {
           linksMap: {
-            '奥创光年': 'https://getmogic.com/',
-            '深圳虾皮': 'https://careers.shopee.cn/',
-            '深圳平安': 'https://www.pingan.cn/',
-            'regex-doctor': 'https://github.com/antfu/regex-doctor',
-            'video-editor': 'https://github.com/AiDesignLabs/video-editor',
-            'starter-monorepo': 'https://github.com/wendraw/starter-monorepo',
-            'WebAV': 'https://github.com/bilibili/WebAV',
             'NuxtLabs': 'https://nuxtlabs.com',
             'Vitest': 'https://github.com/vitest-dev/vitest',
             'Slidev': 'https://github.com/slidevjs/slidev',
@@ -152,13 +143,12 @@ export default defineConfig({
             'ESLint': 'https://github.com/eslint/eslint',
             'Astro': 'https://github.com/withastro/astro',
             'TwoSlash': 'https://github.com/twoslashes/twoslash',
-            // 'wendraw Collective': { link: 'https://opencollective.com/antfu', imageUrl: 'https://github.com/antfu-collective.png' },
+            'Anthony Fu Collective': { link: 'https://opencollective.com/antfu', imageUrl: 'https://github.com/antfu-collective.png' },
             'Netlify': { link: 'https://netlify.com', imageUrl: 'https://github.com/netlify.png' },
             'Stackblitz': { link: 'https://stackblitz.com', imageUrl: 'https://github.com/stackblitz.png' },
             'Vercel': { link: 'https://vercel.com', imageUrl: 'https://github.com/vercel.png' },
           },
           imageOverrides: [
-            ['https://getmogic.com/', 'https://getmogic.com/favicon.ico'],
             ['https://github.com/vuejs/core', 'https://vuejs.org/logo.svg'],
             ['https://github.com/nuxt/nuxt', 'https://nuxt.com/assets/design-kit/icon-green.svg'],
             ['https://github.com/vitejs/vite', 'https://vitejs.dev/logo.svg'],
@@ -223,6 +213,8 @@ export default defineConfig({
       defaultImport: 'url',
     }),
 
+    Exclude(),
+
     {
       name: 'await',
       async closeBundle() {
@@ -240,6 +232,7 @@ export default defineConfig({
     },
   },
 
+  // @ts-expect-error types are missing
   ssgOptions: {
     formatting: 'minify',
   },
@@ -262,7 +255,6 @@ async function generateOg(title: string, output: string) {
   }
   const svg = ogSVg.replace(/\{\{([^}]+)\}\}/g, (_, name) => data[name] || '')
 
-  // eslint-disable-next-line no-console
   console.log(`Generating ${output}`)
   try {
     await sharp(Buffer.from(svg))
