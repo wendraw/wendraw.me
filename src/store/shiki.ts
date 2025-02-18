@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import { getHighlighterCore } from 'shiki/core'
 import type { HighlighterCore } from 'shiki/core'
+import { defineStore } from 'pinia'
+import { getSingletonHighlighterCore } from 'shiki/core'
 import { isDark } from '../logics'
 
 export const useShikiStore = defineStore('pinia', () => {
@@ -8,7 +8,7 @@ export const useShikiStore = defineStore('pinia', () => {
   const theme = computed(() => isDark.value ? 'vitesse-dark' : 'vitesse-light')
 
   if (typeof window !== 'undefined') {
-    getHighlighterCore({
+    getSingletonHighlighterCore({
       themes: [
         import('shiki/themes/vitesse-dark.mjs'),
         import('shiki/themes/vitesse-light.mjs'),

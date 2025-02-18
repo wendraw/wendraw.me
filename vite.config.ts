@@ -232,7 +232,6 @@ export default defineConfig({
     },
   },
 
-  // @ts-expect-error types are missing
   ssgOptions: {
     formatting: 'minify',
   },
